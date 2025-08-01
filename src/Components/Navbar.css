@@ -1,0 +1,142 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: white;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 100;
+  /* Removed the blue underline from the navbar header */
+}
+
+.logo-container img {
+  height: 60px;
+  object-fit: contain;
+  max-width: 100%;
+}
+
+/* Burger Menu Styles */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 101;
+  outline: none;
+}
+
+.burger:focus {
+  outline: none;
+}
+
+.burger:focus-visible {
+  outline: 2px solid #003D73;
+  outline-offset: 2px;
+}
+
+.burger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #003D73;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.burger.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Links */
+.nav-links li a {
+  color: black;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+/* Underline animation */
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background-color: #003D73;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+
+.nav-links li a.active-link {
+  color: #003D73;
+  font-weight: 500;
+}
+
+.nav-links li a.active-link::after {
+  width: 100%;
+}
+
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 0 1rem;
+    gap: 1rem;
+
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+  }
+
+  .nav-links.open {
+    max-height: 500px;
+    padding: 1rem;
+  }
+
+  .nav-links li a::after {
+    height: 3px;
+  }
+}
